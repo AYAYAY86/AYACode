@@ -1,0 +1,16 @@
+src(o0)
+.rotate(0.005)
+
+.brightness(-0.0025)
+.scale(1, 1.0, 1.01, 0.5)
+
+.modulate(src(o0).hue(() => time * 0.01), 0.002)
+.layer(noise(1.2)
+    .colorama(4)
+    .thresh(0.5, 0.01)
+    //.luma(0.11)
+    .mask(shape(40, 0.2, 0))
+    .scrollX(() => gyro.gamma * 5)
+    .scrollY(() => gyro.beta * 5)
+)
+.out(o0)

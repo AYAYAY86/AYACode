@@ -2,93 +2,137 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>DAY FOUR!!! AHHHHHH</title>
-  <script src="./lib/hydra-synth.js"></script>
-  <script src="./lib/gyro-v2.js"></script>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="icons/192x192.png">
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <link rel="manifest" href="manifest.json">
-  <script>
-    // if ('serviceWorker' in navigator) {
-    //     window.addEventListener("load", () => {
-    //         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-    //             console.log('ServiceWorker registered');
-    //           }).catch(function(err) {
-    //             console.log('ServiceWorker error: ', err);
-    //           });
-    //     })
-    // }
-  </script>
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>AYAYAY</title>
+    <script src="./lib/hydra-synth.js"></script>
+    <script src="./lib/gyro-v2.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icons/192x192.png">
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="manifest" href="manifest.json">
+    <script>
+        // if ('serviceWorker' in navigator) {
+        //     window.addEventListener("load", () => {
+        //         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+        //             console.log('ServiceWorker registered');
+        //           }).catch(function(err) {
+        //             console.log('ServiceWorker error: ', err);
+        //           });
+        //     })
+        // }
+    </script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            top: 0px;
+            left: 0px;
+            z-index: 200;
+            border:
+        }
 
-    canvas {
-      display: block;
-    }
+        canvas {
+            display: block;
+        }
 
-    #gyro-button {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: none;
-      cursor: pointer;
-      background-size: cover;
-      background-position: center;
-      background-image: url("cover.png");
-    }
-  </style>
+        #gyro-button {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: none;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            background-image: url("cover.png");
+        }
+    </style>
 </head>
 
 <body>
-  <script type="module">
-    const h = new Hydra()
+    <button id="gyro-button">activate gyroscope</button>
+    <script type="module">
+        const h = new Hydra()
 
-    // if you are not using audio, use this instead
-    // const h = new Hydra({ detectAudio: false })
+        // if you are not using audio, use this instead
+        // const h = new Hydra({ detectAudio: false })
 
-    // request gyroscope permisssions
-    gyro.requestPermissions(document.getElementById('gyro-button'))
+        // request gyroscope permisssions
+        gyro.requestPermissions(document.getElementById('gyro-button'))
 
-    // src(o0)
-    //   .scale(1.005, 1, 1, () => 0.5 - gyro.beta, () => 0.5 - gyro.gamma)
-    //   .layer(gradient(0.2)
-    //     .colorama(4)
-    //     .mask(shape(4, 0.2, 0))
-    //   )
-    //   .out(o0)
+        // src(o0)
+        //   .scale(1.005, 1, 1, () => 0.5 - gyro.beta, () => 0.5 - gyro.gamma)
+        //   .layer(gradient(0.2)
+        //     .colorama(4)
+        //     .mask(shape(4, 0.2, 0))
+        //   )
+        //   .out(o0)
 
-    src(o0)
-        .rotate(0.005)
+        const sketch1 = () => {
 
-        .brightness(-0.0025)
-        .scale(1, 1.0, 1.01, 0.5)
+            src(o0)
+                .rotate(0.005)
 
-        .modulate(src(o0).hue(() => time * 0.01), 0.002)
-        .layer(noise(1.2)
-            .colorama(4)
-            .thresh(0.5, 0.01)
-            //.luma(0.11)
-            .mask(shape(40, 0.2, 0))
-            .scrollX(() =>  gyro.gamma * 5)
-            .scrollY(() =>  gyro.beta * 5)
-        )
-        .out(o0)
+                .brightness(-0.0025)
+                .scale(1, 1.0, 1.01, 0.5)
 
-        gyro.show()
-  
-  </script>
-  <button id="gyro-button">activate gyroscope</button>
+                .modulate(src(o0).hue(() => time * 0.01), 0.002)
+                .layer(noise(1.2)
+                    .colorama(4)
+                    .thresh(0.5, 0.01)
+                    //.luma(0.11)
+                    .mask(shape(40, 0.2, 0))
+                    .scrollX(() => gyro.gamma * 5)
+                    .scrollY(() => gyro.beta * 5)
+                )
+                .out(o0)
+
+        }
+
+            const sketch2 = () => {
+
+                src(o0)
+                    .rotate(0.005)
+
+                    .brightness(-0.0025)
+                    .scale(1, 1.0, 1.01, 0.5)
+
+                    .modulate(src(o0).hue(() => time * 0.01), 0.002)
+                    .layer(gradient(1.2)
+                        .colorama(4)
+                        //.thresh(0.5, 0.01)
+                        //.luma(0.11)
+                        .mask(shape(40, 0.2, 0))
+                        .scrollX(() => gyro.gamma * 5)
+                        .scrollY(() => gyro.beta * 5)
+                    )
+                    .out(o0)
+
+            }
+
+      
+
+        const mySketches = [sketch1, sketch2]
+        let currentSketch = 0
+
+        mySketches[0]()
+
+        // listen to events
+        window.addEventListener('pointerdown', () => {
+            currentSketch++
+            if (currentSketch >= mySketches.length) currentSketch = 0
+            mySketches[currentSketch]()
+        })
+
+        //gyro.show()
+
+    </script>
+
 </body>
 
 </html>
