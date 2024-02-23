@@ -121,8 +121,8 @@
 
             src(o0)
                // .scale(1, () => 1 + gyro.ax * 0.1, () => 1 + gyro.ay * 0.1)
-                .scrollY(() => gyro.beta/200)
-                .scrollX(() => gyro.gamma/200)
+                .scrollY(() => gyro.beta/100)
+                .scrollX(() => gyro.gamma/100)
                 .layer(osc(4, 0.1, 0.8).mask(shape(40, 0.3, 0)))
                 .out()
 
