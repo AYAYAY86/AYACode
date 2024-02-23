@@ -139,8 +139,40 @@
             .out()
     }
 
+    window.navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: { facingMode: "environment" }
+        }).then((stream) => {
+            const video = document.createElement('video')
+            video.setAttribute('autoplay', '')
+            video.setAttribute('muted', '')
+            video.setAttribute('playsinline', '')
+            video.srcObject = stream
+             video.addEventListener('loadedmetadata', () => {
+                video.play()
+                s0.init({ src: video })
+            })
+        })
 
-        const mySketches = [sketch1, sketch2, sketch3, sketch4]
+            const sketch5 = () => {
+
+                src(o0)
+                    .scale(1.005, 1, 0.99)
+                    .scrollY(-0.001)
+                    .modulate(src(s0).hue(() => gyro.alpha * 1.5), 0.002)
+                    .layer(src(s0)
+                        .invert(2)
+                        .thresh(0.5)
+                        .luma(0.5)
+                        .mask(shape(40, 0.3, 0.001))
+                        .scrollX(() => gyro.gamma / 2)
+                        .scrollY(() => gyro.beta * 3)
+                    )
+                    .out(o0)
+            }
+
+
+        const mySketches = [sketch1, sketch2, sketch3, sketch4, sketch5]
        // const mySketches = [sketch3]
         let currentSketch = 0
 
