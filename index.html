@@ -1,31 +1,91 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false" />
-    <title>pocket portals fhnw</title>
-    <script src="./lib/hydra-synth.js"></script>
-    <styLe>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-        }
 
-        canvas {
-            display: block;
-        }
-    </styLe>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>DAY FOUR!!! AHHHHHH</title>
+  <script src="./lib/hydra-synth.js"></script>
+  <script src="./lib/gyro-v2.js"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/192x192.png">
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <link rel="manifest" href="manifest.json">
+  <script>
+    // if ('serviceWorker' in navigator) {
+    //     window.addEventListener("load", () => {
+    //         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+    //             console.log('ServiceWorker registered');
+    //           }).catch(function(err) {
+    //             console.log('ServiceWorker error: ', err);
+    //           });
+    //     })
+    // }
+  </script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #gyro-button {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: none;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      background-image: url("cover.png");
+    }
+  </style>
 </head>
 
 <body>
-    <script type="module">
-        const h = new Hydra()
-        osc(10, 0.1, 1).out()
-    </script>
+  <script type="module">
+    const h = new Hydra()
+
+    // if you are not using audio, use this instead
+    // const h = new Hydra({ detectAudio: false })
+
+    // request gyroscope permisssions
+    gyro.requestPermissions(document.getElementById('gyro-button'))
+
+    // src(o0)
+    //   .scale(1.005, 1, 1, () => 0.5 - gyro.beta, () => 0.5 - gyro.gamma)
+    //   .layer(gradient(0.2)
+    //     .colorama(4)
+    //     .mask(shape(4, 0.2, 0))
+    //   )
+    //   .out(o0)
+
+    src(o0)
+        .rotate(0.005)
+
+        .brightness(-0.0025)
+        .scale(1, 1.01, 1.01, 0.5)
+
+        .modulate(src(o0).hue(() => time * 0.1), 0.002)
+        .layer(gradient(0.2)
+            .colorama(4)
+            .luma(0.11)
+            .mask(shape(40, 0.2, 0))
+            .scrollX(() => 0 - gyro.beta)
+            .scrollY(() => 0 - gyro.gamma)
+        )
+        .out(o0)
+  
+  </script>
+  <button id="gyro-button">activate gyroscope</button>
 </body>
 
 </html>
