@@ -80,8 +80,8 @@
             .thresh(0.5, 0.01)
             //.luma(0.11)
             .mask(shape(40, 0.2, 0))
-            .scrollX(() =>  gyro.gamma)
-            .scrollY(() =>  gyro.beta)
+            .scrollX(() =>  - gyro.gamma*10)
+            .scrollY(() =>  - gyro.beta*10)
         )
         .out(o0)
 
