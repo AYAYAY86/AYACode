@@ -79,10 +79,12 @@
             .colorama(4)
             .luma(0.11)
             .mask(shape(40, 0.2, 0))
-            .scrollX(() => 0 - gyro.beta)
-            .scrollY(() => 0 - gyro.gamma)
+            .scrollX(() => 0.5 + gyro.beta)
+            .scrollY(() => 0.5+ gyro.gamma)
         )
         .out(o0)
+
+        gyro.show()
   
   </script>
   <button id="gyro-button">activate gyroscope</button>
