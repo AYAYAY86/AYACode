@@ -72,9 +72,9 @@
         .rotate(0.005)
 
         .brightness(-0.0025)
-        .scale(1, 1.01, 1.01, 0.5)
+        .scale(1, 1.2, 1.01, 0.5)
 
-        .modulate(src(o0).hue(() => time * 0.1), 0.0002)
+        .modulate(src(o0).hue(() => time * 0.01), 0.002)
         .layer(noise(1.2)
             .colorama(4)
             .thresh(0.5, 0.01)
@@ -85,7 +85,7 @@
         )
         .out(o0)
 
-        gyro.show()
+        //gyro.show()
   
   </script>
   <button id="gyro-button">activate gyroscope</button>
