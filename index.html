@@ -75,12 +75,12 @@
         .scale(1, 1.01, 1.01, 0.5)
 
         .modulate(src(o0).hue(() => time * 0.1), 0.002)
-        .layer(gradient(0.2)
+        .layer(noise(.2)
             .colorama(4)
             .luma(0.11)
             .mask(shape(40, 0.2, 0))
-            .scrollX(() => 0.5 + gyro.beta)
-            .scrollY(() => 0.5+ gyro.gamma)
+            .scrollX(() =>  gyro.beta)
+            .scrollY(() =>  gyro.gamma)
         )
         .out(o0)
 
