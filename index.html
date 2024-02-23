@@ -94,30 +94,42 @@
 
         }
 
-            const sketch2 = () => {
+        const sketch2 = () => {
 
-                src(o0)
-                    .rotate(0.005)
+            src(o0)
+                .rotate(0.005)
 
-                    .brightness(-0.0025)
-                    .scale(1, 1.0, 1.01, 0.5)
+                .brightness(-0.0025)
+                .scale(1, 1.0, 1.01, 0.5)
 
-                    .modulate(src(o0).hue(() => time * 0.01), 0.002)
-                    .layer(gradient(1.2)
-                        .colorama(4)
-                        //.thresh(0.5, 0.01)
-                        //.luma(0.11)
-                        .mask(shape(40, 0.2, 0))
-                        .scrollX(() => gyro.gamma * 5)
-                        .scrollY(() => gyro.beta * 5)
-                    )
-                    .out(o0)
+                .modulate(src(o0).hue(() => time * 0.01), 0.002)
+                .layer(gradient(1.2)
+                    .colorama(4)
+                    //.thresh(0.5, 0.01)
+                    //.luma(0.11)
+                    .mask(shape(40, 0.2, 0))
+                    .scrollX(() => gyro.gamma * 5)
+                    .scrollY(() => gyro.beta * 5)
+                )
+                .out(o0)
 
-            }
+        }
 
-      
+        const sketch3 = () => {
 
-        const mySketches = [sketch1, sketch2]
+
+            src(o0)
+                .scale(1, () => 1 + gyro.ax * 0.1, () => 1 + gyro.ay * 0.1)
+                .scrollY(() => gyro.beta * 5)
+                .scrollX(() => gyro.gamma * 5)
+                .layer(osc(4, 0.1, 0.8).mask(shape(4, 0.3, 0)))
+                .out()
+
+        }
+
+
+        const mySketches = [sketch1, sketch2, sketch3]
+       // const mySketches = [sketch3]
         let currentSketch = 0
 
         mySketches[0]()
